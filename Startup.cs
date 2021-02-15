@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TicTacToe.Extentions;
+using TicTacToe.Middleware;
 using TicTacToe.Services;
 
 namespace TicTacToe
@@ -31,7 +33,15 @@ namespace TicTacToe
             }
             app.UseStaticFiles();
             app.UseRouting();
+            
+            //app.Use(async (context, next) =>
+            //{
+            //    await context.Response.WriteAsync("Test middleware..");
+            //    await next();
+            //});
 
+            app.UesCommunicationMiddleware();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
