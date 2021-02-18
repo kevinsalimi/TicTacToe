@@ -13,7 +13,7 @@ namespace TicTacToe.Services
 
         public Task<bool> RegisterUser(UserModel userModel)
         {
-            throw new NotImplementedException();
+            return Task.FromResult(true);
         }
     }
 }

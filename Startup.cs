@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -31,9 +32,13 @@ namespace TicTacToe
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseStatusCodePagesWithReExecute("/Home/Error", "?statusCode={0}");
+            }
             app.UseStaticFiles();
             app.UseRouting();
-            
+
             //app.Use(async (context, next) =>
             //{
             //    await context.Response.WriteAsync("Test middleware..");
@@ -41,12 +46,13 @@ namespace TicTacToe
             //});
 
             app.UesCommunicationMiddleware();
-            
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                             name: "default",
                             pattern: "{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }

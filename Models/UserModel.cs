@@ -14,8 +14,10 @@ namespace TicTacToe.Models
         [Required(AllowEmptyStrings =false,ErrorMessage ="last name is required.")]
         public string LastName { get; set; }
         [Required(AllowEmptyStrings =false,ErrorMessage ="Password is required.")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required(AllowEmptyStrings =false,ErrorMessage ="Email is required.")]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public bool IsEmailConfirmed { get; set; }
         public DateTime? EmailConfirmationDate { get; set; }
